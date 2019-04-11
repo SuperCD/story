@@ -12,8 +12,14 @@
 		{{ with .Keywords }}<meta name="keywords" content="{{.}}">{{ end }}
 		{{ .Hugo.Generator }}
 
-		{{ block "social" . }}
-		{{ end }}
+		{{ template "_internal/opengraph.html" . }}
+		{{ with .Site.Params.facebook }}
+		<meta property="article:author" content="https://www.facebook.com/{{ . }}" />
+		<meta property="article:publisher" content="https://www.facebook.com/{{ . }}" />{{ end }}
+		{{ template "_internal/twitter_cards.html" . }}
+
+		<!--{{ block "social" . }}
+		{{ end }}-->
 
 		{{ block "layout" . }}
 		<link rel="stylesheet" href="{{ "css/tachyons.min.css" | absURL }}" />
